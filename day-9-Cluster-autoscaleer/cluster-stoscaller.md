@@ -38,7 +38,7 @@ containers:
         - --cloud-provider=aws
         - --skip-nodes-with-local-storage=false
         - --expander=least-waste
-        - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/naresh ###chnage the cluster name in place of naresh my cluster name is naresh
+        - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/amit ###chnage the cluster name in place of naresh my cluster name is naresh
         image: registry.k8s.io/autoscaling/cluster-autoscaler:v1.26.2
         imagePullPolicy: Always
         name: cluster-autoscaler
@@ -78,8 +78,8 @@ Attach this to your Node Group Role.
 Set your min/max/desired node counts for the autoscaler:
 
 aws eks update-nodegroup-config \
-  --cluster-name naresh \
-  --nodegroup-name ng-af5ac006 \
+  --cluster-name amit \
+  --nodegroup-name ng-5ecb97be \
   --scaling-config minSize=2,maxSize=6,desiredSize=3
 6️⃣ Check Autoscaler Logs
 Watch the logs to confirm the autoscaler is working:
