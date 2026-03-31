@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: s3-access-app
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: s3-app
+  template:
+    metadata:
+      labels:
+        app: s3-app
+    spec:
+      serviceAccountName: s3-sa
+      containers:
+        - name: app
+          image: amazon/aws-cli
+          command: ["sh", "-c"]
+          args:
+            - >
+              echo "Listing S3 bucket...";
+              aws s3 ls s3://your-bucket-name;
+              sleep 3600;
+          env:
+            - name: AWS_REGION
+              value: ap-south-1
